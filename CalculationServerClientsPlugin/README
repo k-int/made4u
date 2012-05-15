@@ -1,0 +1,25 @@
+
+
+This plugin contains 2 grails services for lens and frames calculation. To use:
+
+1) Add the following to your grails-app/config/BuildConfig.groovy file (With the correct path to the plugin dir containing this README relative to your app)
+
+grails.plugin.location.'CalculationServerClientsPlugin'='../CalculationServerClientsPlugin'
+
+2) in the class where you wish to access the service add
+
+def lensCalculationService
+
+to the class level declarations
+
+3) Call the lens calculation service
+
+      def result = lensCalculationService.calc(example_brs)
+      result.each { oma_result ->
+        println "result for job: ${oma_result.jobId} design ${oma_result.designId} ${oma_result.materialId}"
+        println "ebmax entry ${oma_result.ebmax.maxEdgeThicknessR} ${oma_result.ebmax.maxEdgeThicknessL}"
+        println "ebmin entry ${oma_result.ebmin.minEdgeThicknessR} ${oma_result.ebmin.minEdgeThicknessL}"
+        println "ecthk entry ${oma_result.ec.centerThicknessR} ${oma_result.ec.centerThicknessL}"
+      }
+
+Done

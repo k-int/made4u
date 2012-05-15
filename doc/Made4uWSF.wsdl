@@ -1,0 +1,131 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="OmaSkeleton" targetNamespace="http://tempui.org/omaskeleton.OmaSkeleton" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns_omaskeleton="http://tempui.org/omaskeleton.OmaSkeleton" xmlns:ns_omaskeleton_omamanager="http://tempui.org/omaskeleton.OmaManager">
+
+  <wsdl:types>
+    <schema targetNamespace="http://tempui.org/omaskeleton.OmaSkeleton" xmlns="http://www.w3.org/2001/XMLSchema">
+
+      <!-- structures -->
+
+      <complexType name="OmaIn">
+        <sequence>
+          <element name="job_id" type="string"/>
+          <element name="design_id" type="int"/>
+          <element name="material_id" type="int"/>
+          <element name="schema" type="string"/>
+        </sequence>
+      </complexType>
+
+      <complexType name="OmasIn">
+        <sequence>
+          <element name="omalist" type="tns_omaskeleton:OmaList"/>
+          <element name="demo" type="boolean"/>
+        </sequence>
+      </complexType>
+
+      <complexType name="minEdgeThickness">
+        <sequence>
+          <element name="minEdgeThicknessR" type="double"/>
+          <element name="minEdgeThicknessL" type="double"/>
+        </sequence>
+      </complexType>
+
+      <complexType name="maxEdgeThickness">
+        <sequence>
+          <element name="maxEdgeThicknessR" type="double"/>
+          <element name="maxEdgeThicknessL" type="double"/>
+        </sequence>
+      </complexType>
+
+      <complexType name="centerThickness">
+        <sequence>
+          <element name="centerThicknessR" type="double"/>
+          <element name="centerThicknessL" type="double"/>
+        </sequence>
+      </complexType>
+
+      <complexType name="OmaOut">
+        <sequence>
+          <element name="job_id" type="string"/>
+          <element name="ec" type="tns_omaskeleton:centerThickness"/>
+          <element name="ebmax" type="tns_omaskeleton:maxEdgeThickness"/>
+          <element name="ebmin" type="tns_omaskeleton:minEdgeThickness"/>
+          <element name="design_id" type="int"/>
+          <element name="material_id" type="int"/>
+        </sequence>
+      </complexType>
+
+      <!-- typedefs -->
+
+      <complexType name="OmaList">
+        <sequence>
+          <element name="Item" type="tns_omaskeleton:OmaIn" minOccurs="0" nillable="true" maxOccurs="unbounded"/>
+        </sequence>
+      </complexType>
+
+      <simpleType name="Omas">
+        <restriction base="tns_omaskeleton:OmasIn"/>
+      </simpleType>
+
+      <complexType name="OmaResultList">
+        <sequence>
+          <element name="Item" type="tns_omaskeleton:OmaOut" minOccurs="0" nillable="true" maxOccurs="unbounded"/>
+        </sequence>
+      </complexType>
+
+
+
+      <!-- requests, responses of service omaskeleton.OmaManager -->
+
+      <element name="calculateOmas">
+        <complexType>
+          <sequence>
+            <element name="omalist" type="tns_omaskeleton:Omas"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="calculateOmasResult" type="tns_omaskeleton:OmaResultList"/>
+    </schema>
+  </wsdl:types>
+
+  <!-- Messages of service omaskeleton.OmaManager -->
+  <wsdl:message name="omaskeleton_OmaManager_calculateOmasRequest">
+    <wsdl:part name="omaskeleton_OmaManager_calculateOmasRequest" element="tns_omaskeleton:calculateOmas"/>
+  </wsdl:message>
+
+  <wsdl:message name="omaskeleton_OmaManager_calculateOmasResponse">
+    <wsdl:part name="omaskeleton_OmaManager_calculateOmasResponse" element="tns_omaskeleton:calculateOmasResult"/>
+  </wsdl:message>
+
+  <!-- Port Type of service omaskeleton.OmaManager -->
+  <wsdl:portType name="OmaManagerPortType">
+    <wsdl:operation name="calculateOmas">
+      <wsdl:input name="calculateOmasRequest" message="tns_omaskeleton:omaskeleton_OmaManager_calculateOmasRequest"/>
+      <wsdl:output name="calculateOmasResponse" message="tns_omaskeleton:omaskeleton_OmaManager_calculateOmasResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+
+  <!-- binding of service omaskeleton.OmaManager -->
+  <wsdl:binding name="OmaManagerSoapBinding" type="tns_omaskeleton:OmaManagerPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="calculateOmas">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="calculateOmasRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="calculateOmasResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+
+  <!-- service omaskeleton.OmaManager -->
+  <wsdl:service name="OmaManager">
+    <wsdl:documentation>Oma manager service</wsdl:documentation>
+    <wsdl:port name="OmaManagerSoapPort" binding="tns_omaskeleton:OmaManagerSoapBinding">
+      <soap:address location="http:///axis2/services/omaskeleton.OmaManager"/>
+    </wsdl:port>
+  </wsdl:service>
+
+
+</wsdl:definitions>

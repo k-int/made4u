@@ -1,0 +1,18 @@
+README
+
+
+To include the CaclulationServerClientsPlugin plugin, the easiest method is to edit your grails-app/config/BuildConfig.groovy file and add
+
+grails.plugin.location.'CalculationServerClientsPlugin'='../CalculationServerClientsPlugin'
+
+This allows the build to automatically reference any target artefacts from the plugin, and removes the need to do relative builds on each small change.
+
+
+The plugin is built using
+
+grails package-plugin
+
+and can be released using
+
+grails release-plugin
+edit

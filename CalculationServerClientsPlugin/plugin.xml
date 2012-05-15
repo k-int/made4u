@@ -1,0 +1,24 @@
+<plugin name='calculation-server-clients-plugin' version='0.1' grailsVersion='1.3.7 &gt; *'>
+  <author>Your name</author>
+  <title>Plugin summary/headline</title>
+  <description>\
+Brief description of the plugin.
+</description>
+  <documentation>http://grails.org/plugin/calculation-server-clients-plugin</documentation>
+  <resources>
+    <resource>BuildConfig</resource>
+    <resource>Config</resource>
+    <resource>DataSource</resource>
+    <resource>PreInit</resource>
+    <resource>UrlMappings</resource>
+    <resource>com.k_int.made4u.services.FramesCalculationService</resource>
+    <resource>com.k_int.made4u.services.FramesManufacturingCalculationService</resource>
+    <resource>com.k_int.made4u.services.LensCalculationService</resource>
+    <resource>com.k_int.made4u.services.WebControlSystemService</resource>
+    <resource>com.k_int.made4u.serviceInputs.LensCalcInput</resource>
+    <resource>com.k_int.made4u.serviceInputs.LensCalcManufacturingOutput</resource>
+    <resource>com.k_int.made4u.serviceInputs.LensCalcOutput</resource>
+  </resources>
+  <dependencies />
+  <behavior />
+</plugin>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m4u:DesignSelection  xmlns:m4u="http://www.made4u.info/schema/customerSelection">
+    <m4u:Frame>
+        <m4u:General FrameID="CH212-2210" JobNumber="1A1"/>
+        <m4u:FrontalInformation MLensthickness="0.5" FinishingAspect="Matt" BaseColor="Grey 429C" Texture="Frontal02.jpg"/>
+        <m4u:LeftTempleInformation FinishingAspect="Matt" BaseColor="Green 382C" Texture="2210_hojas_v.png"/>
+		<m4u:RightTempleInformation FinishingAspect="Matt" BaseColor="Green 382C" Texture="2210_hojas_v.png"/>
+        <m4u:Lens FocalType="Progressive" DesignID="01" DesignName="EyeMade" MaterialID="02" MaterialName="CR39 White" ND="1.6" MDthickness="0.5" MCthickness="1" MEthickness="0.5" ArFilter="Yes" PolarMaterial="No" MirrorFilter="No" PhotochromicMaterial="No" ARColorName="Green" ColorName="Grey 15" PolarColorName="" MirrorColorName="" PhotochromicColorName="" MirrorBaseColorName=""/>
+    </m4u:Frame>
+</m4u:DesignSelection>

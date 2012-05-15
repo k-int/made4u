@@ -1,0 +1,660 @@
+html {
+    height: 100%;
+}
+
+html * {
+    margin: 0;
+    /*padding: 0; SELECT NOT DISPLAYED CORRECTLY IN FIREFOX */
+}
+
+/* GENERAL */
+
+.spinner {
+    padding: 5px;
+    position: absolute;
+    right: 0;
+}
+
+body {
+    background: #fff;
+    color: #333;
+    font: 11px verdana, arial, helvetica, sans-serif;
+    height: 100%;
+}
+#appLogo {
+        float: left;
+	padding:20px;
+}
+
+#userInfo {
+    float: right;
+    padding: 20px;
+}
+
+a:link, a:visited, a:hover {
+    color: #666;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+h1 {
+    color: #48802c;
+    font-weight: normal;
+    font-size: 16px;
+    margin: .8em 0 .3em 0;
+}
+
+ul {
+    padding-left: 15px;
+}
+
+input, select, textarea {
+    background-color: #fcfcfc;
+    border: 1px solid #ccc;
+    font: 11px verdana, arial, helvetica, sans-serif;
+    margin: 2px 0;
+    padding: 2px 4px;
+}
+select {
+   padding: 2px 2px 2px 0;
+}
+textarea {
+	width: 250px;
+	height: 150px;
+	vertical-align: top;
+}
+
+input:focus, select:focus, textarea:focus {
+    border: 1px solid #b2d1ff;
+}
+
+.body {
+    float: left;
+    margin: 0 15px 10px 15px;
+}
+
+/* NAVIGATION MENU */
+
+.nav {
+    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    border: 1px solid #ccc;
+    border-style: solid none solid none;
+    margin-top: 5px;
+    padding: 7px 12px;
+}
+
+.navigationHeading {
+    text-transform:uppercase;
+    font-size:1.1em;
+    color: #48802c;
+    margin-bottom:10px;
+}
+
+.menuButton {
+    font-size: 10px;
+    padding: 0 5px;
+}
+.menuButton a {
+    color: #333;
+    padding: 4px 6px;
+}
+.menuButton a.home {
+    background: url(../images/skin/house.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+.menuButton a.list {
+    background: url(../images/skin/database_table.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+.menuButton a.create {
+    background: url(../images/skin/database_add.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+
+/* MESSAGES AND ERRORS */
+
+.message {
+    background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
+    border: 1px solid #b2d1ff;
+    color: #006dba;
+    margin: 10px 0 5px 0;
+    padding: 5px 5px 5px 30px
+}
+
+/*div.errors, label.error {*/
+div.errors {
+    background: #fff3f3;
+    border: 1px solid red;
+    color: #cc0000;
+    margin: 10px 0 5px 0;
+    padding: 5px 0 5px 0;
+    text-align: left;
+}
+div.errors ul {
+    list-style: none;
+    padding: 0;
+}
+div.errors li {
+	background: url(../images/skin/exclamation.png) 8px 0% no-repeat;
+    line-height: 16px;
+    padding-left: 30px;
+}
+
+td.errors select {
+    border: 1px solid red;
+}
+td.errors input {
+    border: 1px solid red;
+}
+td.errors textarea {
+    border: 1px solid red;
+}
+
+/* TABLES */
+
+table {
+    border: 1px solid #ccc;
+    width: 100%
+}
+tr {
+    border: 0;
+}
+td, th {
+    font: 11px verdana, arial, helvetica, sans-serif;
+    line-height: 12px;
+    padding: 5px 6px;
+    text-align: left;
+    vertical-align: top;
+}
+th {
+    background: #fff url(../images/skin/shadow.jpg);
+    color: #666;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 17px;
+    padding: 2px 6px;
+}
+th a:link, th a:visited, th a:hover {
+    color: #333;
+    display: block;
+    font-size: 10px;
+    text-decoration: none;
+    width: 100%;
+}
+th.asc a, th.desc a {
+    background-position: right;
+    background-repeat: no-repeat;
+}
+th.asc a {
+    background-image: url(../images/skin/sorted_asc.gif);
+}
+th.desc a {
+    background-image: url(../images/skin/sorted_desc.gif);
+}
+
+.odd {
+    background: #f7f7f7;
+}
+.even {
+    background: #fff;
+}
+
+/* LIST */
+
+.list table {
+    border-collapse: collapse;
+}
+.list th, .list td {
+    border-left: 1px solid #ddd;
+}
+.list th:hover, .list tr:hover {
+    background: #b2d1ff;
+}
+
+/* PAGINATION */
+
+.paginateButtons {
+    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    border: 1px solid #ccc;
+    border-top: 0;
+    color: #666;
+    font-size: 10px;
+    overflow: hidden;
+    padding: 10px 3px;
+}
+.paginateButtons a {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-color: #ccc #aaa #aaa #ccc;
+    color: #666;
+    margin: 0 3px;
+    padding: 2px 6px;
+}
+.paginateButtons span {
+    padding: 2px 3px;
+}
+
+/* DIALOG */
+
+.dialog table {
+    padding: 5px 0;
+}
+
+.prop {
+    padding: 5px;
+}
+.prop .name {
+    text-align: left;
+    width: 15%;
+    white-space: nowrap;
+}
+.prop .value {
+    text-align: left;
+    width: 85%;
+}
+
+.tableHeading em.required {
+    color: red;
+}
+
+/* ACTION BUTTONS */
+
+.buttons {
+    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    border: 1px solid #ccc;
+    color: #666;
+    font-size: 10px;
+    margin-top: 5px;
+    overflow: hidden;
+    padding: 0;
+}
+
+.buttons input {
+    background: #fff;
+    border: 0;
+    color: #333;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 3px;
+    overflow: visible;
+    padding: 2px 6px;
+}
+.buttons input.delete {
+    background: transparent url(../images/skin/database_delete.png) 5px 50% no-repeat;
+    padding-left: 28px;
+}
+.buttons input.edit {
+    background: transparent url(../images/skin/database_edit.png) 5px 50% no-repeat;
+    padding-left: 28px;
+}
+.buttons input.save {
+    background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
+    padding-left: 28px;
+}
+
+
+/* FRONT PAGE STUFF */
+#nav {
+    margin-top:20px;
+    margin-left:30px;
+    width:228px;
+    float:left;
+
+}
+.homePagePanel * {
+    margin:0px;
+}
+.homePagePanel .panelBody ul {
+    list-style-type:none;
+    margin-bottom:10px;
+}
+.homePagePanel .panelBody h1 {
+    text-transform:uppercase;
+    font-size:1.1em;
+    margin-bottom:10px;
+}
+.homePagePanel .panelBody {
+    background: url(../images/leftnav_midstretch.png) repeat-y top;
+    margin:0px;
+    padding:15px;
+}
+.homePagePanel .panelBtm {
+    background: url(../images/leftnav_btm.png) no-repeat top;
+    height:20px;
+    margin:0px;
+}
+
+.homePagePanel .panelTop {
+    background: url(../images/leftnav_top.png) no-repeat top;
+    height:11px;
+    margin:0px;
+}
+h2 {
+    margin-top:15px;
+    margin-bottom:15px;
+    font-size:1.2em;
+}
+
+h3 {
+    margin-top:10px;
+    font-size:1.2em;
+}
+
+#pageBody {
+    margin-left:280px;
+    margin-right:20px;
+}
+
+.accountInformation {
+    margin-left:280px;
+    margin-right:20px;
+}
+
+.accountInformation table {
+    border: 0;
+}
+
+#footer {
+    width:100%;
+    color: #fff;
+    background-color: gray;
+    display: block;
+    z-index: 10;
+    position:absolute;
+    bottom:0;
+}
+
+#footer a {
+    color: #fff;
+}
+
+#footer p {
+    padding: 5px 20px;
+}
+
+.clear {
+    clear: both;
+}
+
+#container {
+    height: 100%;
+    overflow: auto;
+}
+
+label {
+    display: block;
+/*    float: left;*/
+    text-align: right;
+    margin:1em;
+}
+
+label.error {
+    color: red;
+    float: right;
+    color: #cc0000;
+    margin: 0;
+    padding: 5px 5px 5px 5px;
+    text-align: left;
+
+}
+
+form {
+/*    width: 500px;*/
+    border-style: none;
+}
+
+.login form {
+    width: 300px;
+}
+
+li.tableList {
+    list-style-type: none
+}
+
+.tableHeading {
+    width: 50%;
+    font-weight: bold;
+    text-align: right;
+
+}
+
+.propertiesTable {
+    border: none;
+    width: 430px;
+    float: left;
+}
+
+.popupTable {
+    border: none;
+    float: left;
+}
+
+.extraConfigOptions {
+    width: 300px;
+    float: left;
+}
+
+
+div.buttonArea {
+    width:   100%;
+    padding: 5px;
+    float:   none;
+    display: block;
+    clear: both;
+}
+
+.extraButtonArea li { 
+    list-style: none;
+    line-height: 130%;
+    padding: 5px;
+    width: 250px;
+}
+
+.extraButtonArea a.button {
+    width: 200px;
+    min-width: 200px;
+    display: block;
+}
+
+input.button, a.button, button.button {
+/*    display:block;*/
+/*    float:left;*/
+    margin:0 7px 0 0;
+    background-color:#f5f5f5;
+    border:1px solid #dedede;
+    border-top:1px solid #eee;
+    border-left:1px solid #eee;
+    font-size:12px;
+    line-height:130%;
+    text-decoration:none;
+    font-weight:bold;
+    cursor:pointer;
+    padding:5px 10px 6px 7px; /* Links */
+
+    color:#336699;
+}
+
+input.button:hover, a.button:hover, button.button:hover {
+    background-color:#dff4ff;
+    border:1px solid #c2e1ef;
+    color:#336699;
+}
+input.button:active, a.button:active, button.button:active {
+    background-color:#6299c5;
+    border:1px solid #6299c5;
+    color:#fff;
+}
+
+.mainFormNavigationButtons {
+    clear: both;
+    padding-top: 5px;
+}
+
+img.preview {
+    max-height: 100px;
+}
+
+fieldset {
+    margin: 0px; 
+    padding: 0px; 
+    border: none;
+}
+
+fieldset.loginbuttons {
+    margin-top: 9px; 
+}
+
+.localonlymethod {
+    width: 350px; 
+    -moz-border-radius: 2px; 
+    -webkit-border-radius: 2px; 
+    padding: 6px; 
+    min-height: 200px; 
+/*    background-color: #fbfbfb; */
+/*    border: 1px solid #e2e2e2; */
+    margin-left: 10px; 
+    margin-right: auto; 
+}
+
+.accountoptions {
+    padding: 6px;
+}
+
+
+.popup {
+    display:none;
+    position:fixed;
+    height:400px;
+    width:600px;
+    background:#FFFFFF;
+    border:2px solid #cecece;
+/*    z-index:2;*/
+    padding:10px;
+    overflow: scroll;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Aesthetic configuration table type layout */
+
+div .aestheticRowShow {
+    height: 100px;
+    width: 645px;
+/*    border: 5px solid #aaaaaa;*/
+}
+div .aestheticConfigImageDivShow {
+/*    border: 2px solid #000000;*/
+    height: 100px;
+    width: 300px;
+    display: inline;
+    float: left;
+}
+
+div .aestheticConfigEmotionalVariableDivShow {
+/*    border: 2px solid #000000;*/
+    height: 100px;
+    width: 300px;
+    display: inline;
+    float: right;
+}
+
+div .aestheticConfigLeftTempleShow {
+/*    border: 2px solid #000000;*/
+    height: 100px;
+    width: 210px;
+    display: inline;
+    float: left;
+}
+
+div .aestheticConfigFrontalShow {
+/*    border: 2px solid #000000;*/
+    height: 100px;
+    width: 210px;
+    display: inline;
+    float: left;
+}
+
+div .aestheticConfigRightTempleShow {
+/*    border: 2px solid #000000;*/
+    height: 100px;
+    width: 210px;
+    display: inline;
+    float: right;
+}
+
+div .aestheticRowEdit {
+    height: 190px;
+    width: 645px;
+/*    border: 5px solid #aaaaaa;*/
+}
+div .aestheticConfigImageDivEdit {
+/*    border: 2px solid #000000;*/
+    height: 130px;
+    width: 300px;
+    display: inline;
+    float: left;
+}
+
+div .aestheticConfigEmotionalVariableDivEdit {
+/*    border: 2px solid #000000;*/
+    height: 170px;
+    width: 300px;
+    display: inline;
+    float: right;
+}
+
+div .aestheticConfigLeftTempleEdit {
+/*    border: 2px solid #000000;*/
+    height: 170px;
+    width: 210px;
+    display: inline;
+    float: left;
+}
+
+div .aestheticConfigFrontalEdit {
+/*    border: 2px solid #000000;*/
+    height: 170px;
+    width: 210px;
+    display: inline;
+    float: left;
+}
+
+div .aestheticConfigRightTempleEdit {
+/*    border: 2px solid #000000;*/
+    height: 170px;
+    width: 210px;
+    display: inline;
+    float: right;
+}
+
+.aestheticImage {
+    max-height: 150px;
+}
+
+.smallAestheticImage {
+    max-height: 80px;
+}
+
+.inputForm {
+    width: 500px;
+}
+
+.pagination {
+    float: right;
+    margin: 5px;
+}
+
+.prevLink, .step, .nextLink {
+    padding: 0px 10px 0px 0px;
+}
+
+.currentStep {
+    padding: 0px 10px 0px 0px;
+    color: #48802C;
+}
