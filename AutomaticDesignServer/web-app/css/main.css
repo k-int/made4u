@@ -447,6 +447,46 @@ div.buttonArea {
     clear: both;
 }
 
+div.generalButtonArea {
+    width:   460px;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    text-align: center;
+}
+
+.generalButtonArea h2 {
+    text-align: left;
+}
+
+div.left {
+    float: left;
+}
+
+div.right {
+    float: right;
+}
+
+.generalButtonArea a.button {
+    width: 200px;
+    min-width: 200px;
+    height: 100px;
+    min-height: 100px;
+    display: block;
+  
+}
+
+.emptyButtonArea {
+    width: 220px;
+    min-width: 220px;
+    height: 100px;
+    min-height: 100px;
+    display: block;
+    padding:5px 10px 6px 7px; /* Links */
+    margin:0 7px 0 0;
+    line-height:130%;
+}
+
+
 .extraButtonArea li { 
     list-style: none;
     line-height: 130%;
