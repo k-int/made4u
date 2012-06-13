@@ -233,6 +233,17 @@
               modal: true,
               width: 950,
               beforeClose: function(event, ui) {
+                
+                // Perform validation to check that the fields are OK and complain if not
+                var allValid = validateAllNewPrescriptionVals();
+                
+                if ( !allValid ) {
+                  alert("${message(code: 'lens.prescription.validation.an.invalid.entry.message', default: 'A prescription configuration has been entered with invalid value(s). Please correct the entry before continuing')}");
+                  return false;
+                }
+                
+                // We're OK to continue since validation has succeeded....
+                
                 // Merge the various fields into fewer in the main form
                 
                 // Merge the sphere minimum values
@@ -371,8 +382,133 @@
             // Update the number of rows so we can stripe the cells
             $('#numOfPrescriptionRows').val(numOfRows+1);
 
+            // Add in validation for the fields in question
+            $('#prescriptionSphereMin-'+numOfRows).blur(function() {
+                var validationMessage = validateSphereVal($(this).val());
+                if ( validationMessage ) 
+                  alert(validationMessage);
+            });
+            $('#prescriptionSphereMax-'+numOfRows).blur(function() {
+              var validationMessage = validateSphereVal($(this).val());
+              if ( validationMessage )
+                  alert(validationMessage);
+            });
+            $('#prescriptionCylinderMin-'+numOfRows).blur(function() {
+              var validationMessage = validateCylinderVal($(this).val());
+              if ( validationMessage )
+                  alert(validationMessage);
+            });
+            $('#prescriptionCylinderMax-'+numOfRows).blur(function() {
+              var validationMessage = validateCylinderVal($(this).val());
+              if ( validationMessage )
+                  alert(validationMessage);
+            });
+            $('#prescriptionAdditionMin-'+numOfRows).blur(function() {
+              var validationMessage = validateAdditionVal($(this).val());
+              if ( validationMessage )
+                  alert(validationMessage);
+            });
+            $('#prescriptionAdditionMax-'+numOfRows).blur(function() {
+              var validationMessage = validateAdditionVal($(this).val());
+              if ( validationMessage )
+                alert(validationMessage);
+            });
+            $('#prescriptionPrismMin-'+numOfRows).blur(function() {
+              var validationMessage = validatePrismVal($(this).val());
+              if ( validationMessage )
+                  alert(validationMessage);
+            });
+            $('#prescriptionPrismMax-'+numOfRows).blur(function() {
+              var validationMessage = validatePrismVal($(this).val());
+              if ( validationMessage )
+                  alert(validationMessage);
+            });
+
             return false;
           });
+          
+          function validateAllNewPrescriptionVals() {
+            
+            var allValid = true;
+            
+            // Go and get the number of rows element so we know what fields we need to consider
+            var numOfRows = parseInt($('#numOfPrescriptionRows').val());
+
+            // For each of the rows validate each of the entries in turn 
+            for ( var ctr = 0; ctr < numOfRows; ctr++ ) {
+              
+              var sphereMin = $('#prescriptionSphereMin-'+ctr).val();
+              var sphereMax = $('#prescriptionSphereMax-'+ctr).val();
+              var cylinderMin = $('#prescriptionCylinderMin-'+ctr).val();
+              var cylinderMax = $('#prescriptionCylinderMax-'+ctr).val();
+              var additionMin = $('#prescriptionAdditionMin-'+ctr).val();
+              var additionMax = $('#prescriptionAdditionMax-'+ctr).val();
+              var prismMin = $('#prescriptionPrismMin-'+ctr).val();
+              var prismMax = $('#prescriptionPrismMax-'+ctr).val();
+              
+              if ( !sphereMin && !sphereMax && !cylinderMin && !cylinderMax && !additionMin && !additionMax && !prismMin && !prismMax ) {
+                // No values specified - ignore
+              } else {
+                if ( validateSphereVal(sphereMin) != "" || validateSphereVal(sphereMax) != "")
+                  allValid = false;
+                if ( validateCylinderVal(cylinderMin) != "" || validateCylinderVal(cylinderMax) != "")
+                  allValid = false;
+                if ( validateAdditionVal(additionMin) != "" || validateAdditionVal(additionMax) != "" )
+                  allValid = false;
+                if ( validatePrismVal(prismMin) != "" || validatePrismVal(prismMax) != "" )
+                  allValid = false;
+
+                if (!allValid) {
+                  // We've found something that's invalid so stop testing to save time
+                  break;
+                }
+              }
+            }
+            
+            return allValid;
+          }
+
+          function validateSphereVal(val) {
+            
+            var retval = "";
+            
+            if ( !val || val != parseFloat(val) ) {
+              retval = "${message(code: 'lens.validation.sphere.value.required.message', default: 'A numeric value is required')}";
+            }
+            
+            return retval;
+          }
+
+          function validateCylinderVal(val) {
+            var retval = "";
+            
+            if ( !val || val != parseFloat(val) ) {
+              retval = "${message(code: 'lens.validation.cylinder.value.required.message', default: 'A numeric cylinder value is required')}";
+            }
+            
+            return retval;
+          }
+
+          function validateAdditionVal(val) {
+            var retval = "";
+            
+            if ( !val || val != parseFloat(val) ) {
+              retval = "${message(code: 'lens.validation.addition.value.required.message', default: 'A numeric addition value is required')}";
+            }
+            
+            return retval;
+          }
+
+          function validatePrismVal(val) {
+            var retval = "";
+            
+            if ( !val || val != parseFloat(val) ) {
+              retval = "${message(code: 'lens.validation.prism.value.required', default: 'A numeric prism value is required')}";
+            }
+            
+            return retval;
+          }
+          
 
         </script>
 
