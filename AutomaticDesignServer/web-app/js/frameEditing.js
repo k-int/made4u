@@ -64,6 +64,13 @@
               modal: true,
               width: 450,
               beforeClose: function(event, ui) { 
+                  
+                var validData = validateAllFrontalTempleConfigVals();
+                if ( !validData ) {
+                    alert("Invalid configuration data specified of required value missing. Please check all data before continuing"); // TODO - change to a message lookup
+                    return false;
+                }
+                  
                 // Copy various fields from the popup into hidden fields in the form
                 $('#finishingAspect').val($('#popupFinishingAspect').val());
                 $('#mattePrice').val($('#popupMattePrice').val());
@@ -93,6 +100,13 @@
               modal: true,
               width: 600,
               beforeClose: function(event, ui) { 
+                  
+                var fieldsValid = validateAllFrontalDimensionVals();
+                if (!fieldsValid ) {
+                    alert("Invalid measurement(s) specified. Please check all values before continuing."); // TODO - make this a message lookup...
+                    return false;
+                }
+                    
                 // Copy various fields from the popup into hidden fields in the form
                 $('#boxingHorizontalStandard').val($('#popupBoxingHorizontalStandard').val());
                 $('#boxingHorizontalMin').val($('#popupBoxingHorizontalMin').val());
@@ -143,6 +157,13 @@
               modal: true,
               width: 600,
               beforeClose: function(event, ui) { 
+                  
+                var totalSizesValid = validateAllTotalSizeVals();
+                if ( !totalSizesValid ) {
+                    alert("Invalid dimension specified. Please check all values before continuing."); // TODO - make this a message lookup
+                    return false;
+                }
+                
                 // Copy various fields from the popup into hidden fields in the form
                 $('#totalSizeBridgeWidth1').val($('#popupTotalSizeBridgeWidth1').val());
                 $('#totalSizeMin1').val($('#popupTotalSizeMin1').val());
@@ -207,6 +228,14 @@
               height: 500,
               width: 1000,
               beforeClose: function(event, ui) {
+                  
+                // Check any added fields are valid before continuing
+                var fieldsValid = validateAllFrontalNewTextureVals();
+                if ( !fieldsValid ) {
+                    alert("Invalid decoration value specified or values missing. Please check all values before continuing"); // TODO - make this into a message lookup
+                    return false;
+                }
+
                 // Copy various fields from the popup into hidden fields in the form
                 
                 // Combine each of the new base colour fields separated by _BREAK_
@@ -348,6 +377,13 @@
               modal: true,
               width: 450,
               beforeClose: function(event, ui) { 
+                  
+                var configValid = validateAllLeftTempleConfigVals();
+                if ( !configValid ) {
+                    alert("Invalid configuration value specified. Please check all values before continuing"); // TODO - make this into a message lookup
+                    return false;
+                }
+                
                 // Copy various fields from the popup into hidden fields in the form
                 $('#leftTempleFinishingAspect').val($('#popupLeftTempleFinishingAspect').val());
                 $('#leftTempleMattePrice').val($('#popupLeftTempleMattePrice').val());
@@ -370,6 +406,13 @@
               modal: true,
               width: 650,
               beforeClose: function(event, ui) { 
+                  
+                var dataValid = validateAllLeftTempleDimensionVals();
+                if ( !dataValid ) {
+                    alert("Invalid dimension value specified. Please check all values before continuing"); // TODO - make this into a message lookup
+                    return false;
+                }
+                
                 // Copy various fields from the popup into hidden fields in the form
                 $('#leftTempleLengthStandard').val($('#popupLeftTempleLengthStandard').val());
                 $('#leftTempleLengthMin').val($('#popupLeftTempleLengthMin').val());
@@ -400,6 +443,14 @@
               height: 500,
               width: 1000,
               beforeClose: function(event, ui) {
+                
+                
+                // Check any added fields are valid before continuing
+                var fieldsValid = validateAllLeftTempleNewTextureVals();
+                if ( !fieldsValid ) {
+                    alert("Invalid decoration value specified or values missing. Please check all values before continuing"); // TODO - make this into a message lookup
+                    return false;
+                }
                 
                 // Copy various fields from the popup into hidden fields in the form
                 
@@ -541,6 +592,13 @@
               modal: true,
               width: 450,
               beforeClose: function(event, ui) { 
+                  
+                var configValid = validateAllRightTempleConfigVals();
+                if ( !configValid ) {
+                    alert("Invalid configuration value specified. Please check all values before continuing"); // TODO - make this into a message lookup
+                    return false;
+                }
+
                 // Copy various fields from the popup into hidden fields in the form
                 $('#rightTempleFinishingAspect').val($('#popupRightTempleFinishingAspect').val());
                 $('#rightTempleMattePrice').val($('#popupRightTempleMattePrice').val());
@@ -563,6 +621,13 @@
               modal: true,
               width: 650,
               beforeClose: function(event, ui) { 
+                  
+                var dataValid = validateAllRightTempleDimensionVals();
+                if ( !dataValid ) {
+                    alert("Invalid dimension value specified. Please check all values before continuing"); // TODO - make this into a message lookup
+                    return false;
+                }
+
                 // Copy various fields from the popup into hidden fields in the form
                 $('#rightTempleLengthStandard').val($('#popupRightTempleLengthStandard').val());
                 $('#rightTempleLengthMin').val($('#popupRightTempleLengthMin').val());
@@ -593,6 +658,14 @@
               height: 500,
               width: 1000,
               beforeClose: function(event, ui) {
+                  
+                // Check any added fields are valid before continuing
+                var fieldsValid = validateAllRightTempleNewTextureVals();
+                if ( !fieldsValid ) {
+                    alert("Invalid decoration value specified or values missing. Please check all values before continuing"); // TODO - make this into a message lookup
+                    return false;
+                }
+  
                 // Copy various fields from the popup into hidden fields in the form
                 
                 // Combine each of the new base colour fields separated by _BREAK_
@@ -740,6 +813,16 @@
               modal: true,
               width: 800,
               beforeClose: function(event, ui) { 
+                  
+                  
+                // Perform validation to check that the fields are OK and complain if not
+                var allValid = validateAllNewPrecookedVals();
+                
+                if ( !allValid ) {
+                  alert("A precooked file configuration has been entered with invalid value(s). Please correct the entry before continuing"); // TODO - change this to a message lookup
+                  return false;
+                }
+  
                 // Copy various fields from the popup into hidden fields in the form
                 // Combine each of the reference fields separated by _BREAK_
                 var refVals = "";
@@ -831,7 +914,16 @@
                if ( validationMessage )
                    alert(validationMessage);
             });
-            // TODO
+            $('#popupPrecookedHeelWidth-'+newRowNum).blur(function() {
+                var validationMessage = validateNumberVal($(this).val());
+                if ( validationMessage ) 
+                    alert(validationMessage);
+            });
+            $('#popupPrecookedFile-'+newRowNum).change(function() {
+                var validationMessage = validateFileVal($(this).val());
+                if ( validationMessage ) 
+                    alert(validationMessage);
+            });
 
             return false;
           });
@@ -892,8 +984,8 @@
               newRow.append($('<td></td>').append('<input type="text" id="frontalTextureReference-' + numOfRows + '" value=""/>'));
               newRow.append($('<td></td>').append('<input type="text" id="frontalTextureX-' + numOfRows + '" value="0"/>'));
               newRow.append($('<td></td>').append('<input type="text" id="frontalTextureY-' + numOfRows + '" value="0"/>'));
-              newRow.append($('<td></td>').append('<input type="text" id="frontalTextureScaleFactor-' + numOfRows + '" value="${formatNumber(number:0, format:"0.0")}"/>'));
-              newRow.append($('<td></td>').append('<input type="text" id="frontalTexturePrice-' + numOfRows + '" value="${formatNumber(number:0.0, format:"0.00")}"/>'));
+              newRow.append($('<td></td>').append('<input type="text" id="frontalTextureScaleFactor-' + numOfRows + '" value="' + formattedFloatZero + '"/>'));
+              newRow.append($('<td></td>').append('<input type="text" id="frontalTexturePrice-' + numOfRows + '" value="' + formattedPriceZero + '"/>'));
               newRow.append($('<td></td>').append('<input type="text" id="frontalTextureProductionTime-' + numOfRows + '" value="0"/>'));
               newRow.append('<td></td>');
               
@@ -902,6 +994,39 @@
               $('#frontalTextureListNoEntry').hide();
               $('#frontalTextureListTableHeading').show();
               
+              
+              // Add in validation to the various fields that we've just added
+              $('#frontalTextureReference-'+numOfRows).blur(function() {
+                 var validationMessage =  validateStringPresentVal($(this).val());
+                 if ( validationMessage != "" )
+                     alert(validationMessage);
+              });
+              $('#frontalTextureX-'+numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "")
+                      alert(validationMessage);
+              });
+              $('#frontalTextureY-'+numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              })
+              $('#frontalTextureScaleFactor-' + numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              });
+              $('#frontalTexturePrice-'+numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              });
+              $('#frontalTextureProductionTime-'+numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              });
+
               // Remove the image from the list
               $('#popupFrontalNewTextureImage option:selected').remove();
 
@@ -942,7 +1067,7 @@
               // Update the number of rows so we can stripe the cells
               $('#numOfLeftTempleBaseColourRows').val(numOfRows+1);
               
-            } else {
+            }else {
               alert(localisedMessages['frame_database_config_popup_no_choice_made_message']);
             }
 
@@ -973,8 +1098,8 @@
               newRow.append($('<td></td>').append('<input type="text" id="leftTempleTextureReference-' + numOfRows + '" value=""/>'));
               newRow.append($('<td></td>').append('<input type="text" id="leftTempleTextureX-' + numOfRows + '" value="0"/>'));
               newRow.append($('<td></td>').append('<input type="text" id="leftTempleTextureY-' + numOfRows + '" value="0"/>'));
-              newRow.append($('<td></td>').append('<input type="numeric" name="leftTempleTextureScaleFactor-' + numOfRows + '" id="leftTempleTextureScaleFactor-' + numOfRows + '" class="required" value="${formatNumber(number:0.0, format:"0.0")}"/>'));
-              newRow.append($('<td></td>').append('<input type="text" id="leftTempleTexturePrice-' + numOfRows + '" value="${formatNumber(number:0.0, format:"0.00")}"/>'));
+              newRow.append($('<td></td>').append('<input type="numeric" name="leftTempleTextureScaleFactor-' + numOfRows + '" id="leftTempleTextureScaleFactor-' + numOfRows + '" class="required" value="' + formattedFloatZero + '"/>'));
+              newRow.append($('<td></td>').append('<input type="text" id="leftTempleTexturePrice-' + numOfRows + '" value="' + formattedPriceZero + '"/>'));
               newRow.append($('<td></td>').append('<input type="text" id="leftTempleTextureProductionTime-' + numOfRows + '" value="0"/>'));
               newRow.append('<td></td>');
               
@@ -983,6 +1108,38 @@
               $('#leftTempleTextureListNoEntry').hide();
               $('#leftTempleTextureListTableHeading').show();
               
+              // Add in validation to the various fields that we've just added
+              $('#leftTempleTextureReference-'+numOfRows).blur(function() {
+                 var validationMessage =  validateStringPresentVal($(this).val());
+                 if ( validationMessage != "" )
+                     alert(validationMessage);
+              });
+              $('#leftTempleTextureX-'+numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "")
+                      alert(validationMessage);
+              });
+              $('#leftTempleTextureY-'+numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              })
+              $('#leftTempleTextureScaleFactor-' + numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              });
+              $('#leftTempleTexturePrice-'+numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              });
+              $('#leftTempleTextureProductionTime-'+numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              });
+          
               // Remove the image from the list
               $('#popupLeftTempleNewTextureImage option:selected').remove();
 
@@ -1054,8 +1211,8 @@
               newRow.append($('<td></td>').append('<input type="text" id="rightTempleTextureReference-' + numOfRows + '" value=""/>'));
               newRow.append($('<td></td>').append('<input type="text" id="rightTempleTextureX-' + numOfRows + '" value="0"/>'));
               newRow.append($('<td></td>').append('<input type="text" id="rightTempleTextureY-' + numOfRows + '" value="0"/>'));
-              newRow.append($('<td></td>').append('<input type="text" id="rightTempleTextureScaleFactor-' + numOfRows + '" value="${formatNumber(number:0.0, format:"0.0")}"/>'));
-              newRow.append($('<td></td>').append('<input type="text" id="rightTempleTexturePrice-' + numOfRows + '" value="${formatNumber(number:0.0, format:"0.00")}"/>'));
+              newRow.append($('<td></td>').append('<input type="text" id="rightTempleTextureScaleFactor-' + numOfRows + '" value="' + formattedFloatZero + '"/>'));
+              newRow.append($('<td></td>').append('<input type="text" id="rightTempleTexturePrice-' + numOfRows + '" value="' + formattedPriceZero + '"/>'));
               newRow.append($('<td></td>').append('<input type="text" id="rightTempleTextureProductionTime-' + numOfRows + '" value="0"/>'));
               newRow.append('<td></td>');
               
@@ -1064,6 +1221,40 @@
               $('#rightTempleTextureListNoEntry').hide();
               $('#rightTempleTextureListTableHeading').show();
               
+              
+              // Add in validation to the various fields that we've just added
+              $('#rightTempleTextureReference-'+numOfRows).blur(function() {
+                 var validationMessage =  validateStringPresentVal($(this).val());
+                 if ( validationMessage != "" )
+                     alert(validationMessage);
+              });
+              $('#rightTempleTextureX-'+numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "")
+                      alert(validationMessage);
+              });
+              $('#rightTempleTextureY-'+numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              })
+              $('#rightTempleTextureScaleFactor-' + numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              });
+              $('#rightTempleTexturePrice-'+numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              });
+              $('#rightTempleTextureProductionTime-'+numOfRows).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              });
+          
+
               // Remove the image from the list
               $('#popupRightTempleNewTextureImage option:selected').remove();
 
@@ -1078,6 +1269,447 @@
 
             return false;
           });
+
+
+          //************************************************
+          // Set up validation for static fields in the interface
+          //************************************************
+          
+          // Frontal
+          //************************
+          
+          // Configuration
+          $('#popupFinishingAspect').blur(function() {
+              var validationMessage = validateStringPresentVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupMattePrice').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupMatteProductionTime').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupBrilliantPrice').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupBrilliantProductionTime').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                 alert(validationMessage);
+          });
+          $('#popupMinLensThickness').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupLeftTopPupilFrameDistance').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupLeftBottomPupilFrameDistancePSV').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupLeftBottomPupilFrameDistanceMF').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupRightTopPupilFrameDistance').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupRightBottomPupilFrameDistancePSV').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupRightBottomPupilFrameDistanceMF').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          
+          // Dimensions
+          // General dims
+          $('#popupBoxingHorizontalStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" ) 
+                  alert(validationMessage);
+          });
+          $('#popupBoxingHorizontalMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupBoxingHorizontalMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" ) 
+                  alert(validationMessage);
+          });
+          $('#popupBoxingVerticalStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupBoxingVerticalMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupBoxingVerticalMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupPantoscopicAngleLeftStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupPantoscopicAngleLeftMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupPantoscopicAngleLeftMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupPantoscopicAngleRightStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupPantoscopicAngleRightMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupPantoscopicAngleRightMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupBridgeWidthStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupBridgeWidthMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupBridgeWidthMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupBridgeHeightStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupBridgeHeightMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupBridgeHeightMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupHeelWidthStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupHeelWidthMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupHeelWidthMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupInternalRimReductionStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" ) 
+                  alert(validationMessage);
+          });
+          $('#popupInternalRimReductionMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupInternalRimReductionMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupBaseOfFrameStandard').blur(function() {
+             var validationMessage = validateNumberVal($(this).val());
+             if ( validationMessage != "" )
+                 alert(validationMessage);
+          });
+          $('#popupBaseOfFrameMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" ) 
+                  alert(validationMessage);
+          });
+          $('#popupBaseOfFrameMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupWrapAngleStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupWrapAngleMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupWrapAngleMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupTotalLengthStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          
+          // Total length dims
+          for(var ctr = 1; ctr <= 15; ctr++ ) {
+              $('#popupTotalSizeBridgeWidth'+ctr).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              });
+              $('#popupTotalSizeMin'+ctr).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              });
+              $('#popupTotalSizeMax'+ctr).blur(function() {
+                  var validationMessage = validateNumberVal($(this).val());
+                  if ( validationMessage != "" )
+                      alert(validationMessage);
+              })
+          }
+          
+          // Left Temple 
+          // ***********************
+           
+          // Configuration
+          $('#popupLeftTempleFinishingAspect').blur(function() {
+             var validationMessage = validateStringPresentVal($(this).val());
+             if ( validationMessage != "" )
+                 alert(validationMessage);
+          });
+      
+          $('#popupLeftTempleMattePrice').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          
+          $('#popupLeftTempleMatteProductionTime').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+      
+          $('#popupLeftTempleBrilliantPrice').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+  
+          $('#popupLeftTempleBrilliantProductionTime').blur(function() {
+             var validationMessage = validateNumberVal($(this).val());
+             if ( validationMessage != "" )
+                 alert(validationMessage);
+          })
+          
+          // Dimensions
+          $('#popupLeftTempleLengthStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupLeftTempleLengthMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);              
+          });
+          $('#popupLeftTempleLengthMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupLeftTempleOpeningAngleStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupLeftTempleOpeningAngleMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupLeftTempleOpeningAngleMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupLeftTempleMainCurvatureStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupLeftTempleMainCurvatureMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupLeftTempleMainCurvatureMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupLeftTempleTerminalAngleStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupLeftTempleTerminalAngleMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupLeftTempleTerminalAngleMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          
+
+          // Right Temple 
+          // *********************************
+          //
+          // Configuration
+          $('#popupRightTempleFinishingAspect').blur(function() {
+             var validationMessage = validateStringPresentVal($(this).val());
+             if ( validationMessage != "" )
+                 alert(validationMessage);
+          });
+      
+          $('#popupRightTempleMattePrice').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          
+          $('#popupRightTempleMatteProductionTime').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+      
+          $('#popupRightTempleBrilliantPrice').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+  
+          $('#popupRightTempleBrilliantProductionTime').blur(function() {
+             var validationMessage = validateNumberVal($(this).val());
+             if ( validationMessage != "" )
+                 alert(validationMessage);
+          })
+          
+          // Dimensions
+          $('#popupRightTempleLengthStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupRightTempleLengthMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);              
+          });
+          $('#popupRightTempleLengthMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupRightTempleOpeningAngleStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupRightTempleOpeningAngleMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupRightTempleOpeningAngleMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupRightTempleMainCurvatureStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupRightTempleMainCurvatureMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupRightTempleMainCurvatureMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupRightTempleTerminalAngleStandard').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupRightTempleTerminalAngleMin').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+          $('#popupRightTempleTerminalAngleMax').blur(function() {
+              var validationMessage = validateNumberVal($(this).val());
+              if ( validationMessage != "" )
+                  alert(validationMessage);
+          });
+
 
         });
 
@@ -1112,4 +1744,405 @@
           
           return retval;
       }
+      
+      function validateFileVal(val) {
+        var retval = "";
 
+        if ( !val || val == "" || val.trim() == "" ) {
+          retval = "Bad required file val..";
+          // TODO - make this a message lookup...
+        }
+
+        return retval;
+      }
+
+
+
+        function validateAllNewPrecookedVals() {
+            
+            var allValid = true;
+            
+            // Go and get the number of rows element so we know what fields we need to consider
+            var numOfRows = parseInt($('#numOfPrecookedRows').val());
+
+            // For each of the rows validate each of the entries in turn 
+            for ( var ctr = 0; ctr <= numOfRows; ctr++ ) {
+              
+              var referenceVal = $('#popupPrecookedReference-'+ctr).val();
+              var bridgeVal = $('#popupPrecookedBridgeWidth-'+ctr).val();
+              var heelVal = $('#popupPrecookedHeelWidth-'+ctr).val();
+              var fileVal = $('#popupPrecookedFile-'+ctr).val();
+                            
+              if ( referenceVal || bridgeVal || heelVal || fileVal ) {
+                  // At least one value specified - validate them all..
+                  if ( validateStringPresentVal(referenceVal) != "" )
+                      allValid = false;
+                  if ( validateNumberVal(bridgeVal) != "" )
+                      allValid = false;
+                  if ( validateNumberVal(heelVal) != "" )
+                      allValid = false;
+                  if ( validateFileVal(fileVal) != "" )
+                      allValid = false;
+                  
+                  if (!allValid) {
+//                      alert("allValid = false. ref: " + referenceVal + " bridge " + bridgeVal + " heel " + heelVal + " file " + fileVal + " ctr = " + ctr);
+                      // We've found something that's invalid so stop testing to save time
+                      break;
+                  }
+              } else {
+                  // No values specified so just ignore
+              }
+            }
+            
+            return allValid;
+          }
+          
+          function validateAllFrontalTempleConfigVals() {
+              var allValid = true;
+          
+              var finishingValid = validateStringPresentVal($('#popupFinishingAspect').val());
+              var mattePriceValid = validateNumberVal($('#popupMattePrice').val());
+              var matteProdTimeValid = validateNumberVal($('#popupMatteProductionTime').val());
+              var brilliantPriceValid = validateNumberVal($('#popupBrilliantPrice').val());
+              var brilliantProdTimeValid = validateNumberVal($('#popupBrilliantProductionTime').val());
+              var minLensThickValid = validateNumberVal($('#popupMinLensThickness').val());
+              var leftTopDistanceValid = validateNumberVal($('#popupLeftTopPupilFrameDistance').val());
+              var leftBottomDistancePSVValid = validateNumberVal($('#popupLeftBottomPupilFrameDistancePSV').val());
+              var leftBottomDistanceMFValid = validateNumberVal($('#popupLeftBottomPupilFrameDistanceMF').val());
+              var rightTopDistanceValid = validateNumberVal($('#popupRightTopPupilFrameDistance').val());
+              var rightBottomDistancePSVValid = validateNumberVal($('#popupRightBottomPupilFrameDistancePSV').val());
+              var rightBottomDistanceMFValid = validateNumberVal($('#popupRightBottomPupilFrameDistanceMF').val());
+              
+
+              if ( finishingValid != "" || mattePriceValid != "" || matteProdTimeValid != "" || brilliantPriceValid != ""
+                || brilliantProdTimeValid != "" || minLensThickValid != "" || leftTopDistanceValid != "" 
+                || leftBottomDistancePSVValid != "" || leftBottomDistanceMFValid != ""
+                || rightTopDistanceValid != "" || rightBottomDistancePSVValid != "" || rightBottomDistanceMFValid != "" ) {
+              
+                    allValid = false;
+              }
+
+              return allValid;
+          }
+          
+          
+          
+          function validateAllLeftTempleConfigVals() {
+              var allValid = true;
+              
+              var finishingValid = validateStringPresentVal($('#popupLeftTempleFinishingAspect').val());
+              var mattePriceValid = validateNumberVal($('#popupLeftTempleMattePrice').val());
+              var matteTimeValid = validateNumberVal($('#popupLeftTempleMatteProductionTime').val());
+              var brilliantPriceValid = validateNumberVal($('#popupLeftTempleBrilliantPrice').val());
+              var brilliantTimeValid = validateNumberVal($('#popupLeftTempleBrilliantProductionTime').val());
+              
+              if ( finishingValid != "" || mattePriceValid != "" || matteTimeValid != "" || brilliantPriceValid != "" || brilliantTimeValid != "" )  {
+                  allValid = false;
+              }
+              
+              return allValid;              
+          }
+          
+          function validateAllRightTempleConfigVals() {
+              var allValid = true;
+              
+              var finishingValid = validateStringPresentVal($('#popupRightTempleFinishingAspect').val());
+              var mattePriceValid = validateNumberVal($('#popupRightTempleMattePrice').val());
+              var matteTimeValid = validateNumberVal($('#popupRightTempleMatteProductionTime').val());
+              var brilliantPriceValid = validateNumberVal($('#popupRightTempleBrilliantPrice').val());
+              var brilliantTimeValid = validateNumberVal($('#popupRightTempleBrilliantProductionTime').val());
+              
+              if ( finishingValid != "" || mattePriceValid != "" || matteTimeValid != "" || brilliantPriceValid != "" || brilliantTimeValid != "" )  {
+                  allValid = false;
+              }
+              
+              return allValid;              
+          }
+          
+          function validateAllLeftTempleDimensionVals() {
+            var allValid = true;
+              
+              
+            var stdLengthValid = validateNumberVal($('#popupLeftTempleLengthStandard').val());
+            var minLengthValid = validateNumberVal($('#popupLeftTempleLengthMin').val());
+            var maxLengthValid = validateNumberVal($('#popupLeftTempleLengthMax').val());
+            var stdOpenAngleValid = validateNumberVal($('#popupLeftTempleOpeningAngleStandard').val());
+            var minOpenAngleValid = validateNumberVal($('#popupLeftTempleOpeningAngleMin').val());
+            var maxOpenAngleValid = validateNumberVal($('#popupLeftTempleOpeningAngleMax').val());
+            var stdMainCurvatureValid = validateNumberVal($('#popupLeftTempleMainCurvatureStandard').val());
+            var minMainCurvatureValid = validateNumberVal($('#popupLeftTempleMainCurvatureMin').val());
+            var maxMainCurvatureValid = validateNumberVal($('#popupLeftTempleMainCurvatureMax').val());
+            var stdTerminalAngleValid = validateNumberVal($('#popupLeftTempleTerminalAngleStandard').val());
+            var minTerminalAngleValid = validateNumberVal($('#popupLeftTempleTerminalAngleMin').val());
+            var maxTerminalAngleValid = validateNumberVal($('#popupLeftTempleTerminalAngleMax').val());
+            
+            if ( stdLengthValid != "" || minLengthValid != "" || maxLengthValid != ""
+                || stdOpenAngleValid != "" || minOpenAngleValid != "" || maxOpenAngleValid != ""
+                || stdMainCurvatureValid != "" || minMainCurvatureValid != "" || maxMainCurvatureValid != ""
+                || stdTerminalAngleValid != "" || minTerminalAngleValid != "" || maxTerminalAngleValid != "" ) {
+                allValid = false;
+            }
+              
+            return allValid;              
+          }
+          
+          function validateAllRightTempleDimensionVals() {
+            var allValid = true;
+              
+              
+            var stdLengthValid = validateNumberVal($('#popupRightTempleLengthStandard').val());
+            var minLengthValid = validateNumberVal($('#popupRightTempleLengthMin').val());
+            var maxLengthValid = validateNumberVal($('#popupRightTempleLengthMax').val());
+            var stdOpenAngleValid = validateNumberVal($('#popupRightTempleOpeningAngleStandard').val());
+            var minOpenAngleValid = validateNumberVal($('#popupRightTempleOpeningAngleMin').val());
+            var maxOpenAngleValid = validateNumberVal($('#popupRightTempleOpeningAngleMax').val());
+            var stdMainCurvatureValid = validateNumberVal($('#popupRightTempleMainCurvatureStandard').val());
+            var minMainCurvatureValid = validateNumberVal($('#popupRightTempleMainCurvatureMin').val());
+            var maxMainCurvatureValid = validateNumberVal($('#popupRightTempleMainCurvatureMax').val());
+            var stdTerminalAngleValid = validateNumberVal($('#popupRightTempleTerminalAngleStandard').val());
+            var minTerminalAngleValid = validateNumberVal($('#popupRightTempleTerminalAngleMin').val());
+            var maxTerminalAngleValid = validateNumberVal($('#popupRightTempleTerminalAngleMax').val());
+            
+            if ( stdLengthValid != "" || minLengthValid != "" || maxLengthValid != ""
+                || stdOpenAngleValid != "" || minOpenAngleValid != "" || maxOpenAngleValid != ""
+                || stdMainCurvatureValid != "" || minMainCurvatureValid != "" || maxMainCurvatureValid != ""
+                || stdTerminalAngleValid != "" || minTerminalAngleValid != "" || maxTerminalAngleValid != "" ) {
+                allValid = false;
+            }
+              
+            return allValid;              
+          }
+          
+          function validateAllLeftTempleNewTextureVals() {
+              
+              
+              var allValid = true;
+            
+              // Go and get the number of rows element so we know what fields we need to consider
+              var numOfRows = parseInt($('#numOfLeftTempleTextureRows').val());
+
+              // For each of the rows validate each of the entries in turn 
+              for ( var ctr = 0; ctr <= numOfRows; ctr++ ) {
+
+                var referenceVal = $('#leftTempleTextureReference-'+ctr).val();
+                var xVal = $('#leftTempleTextureX-'+ctr).val();
+                var yVal = $('#leftTempleTextureY-'+ctr).val();
+                var scaleVal = $('#leftTempleTextureScaleFactor-'+ctr).val();
+                var priceVal = $('#leftTempleTexturePrice-'+ctr).val();
+                var prodTimeVal = $('#leftTempleTextureProductionTime-'+ctr).val();
+                
+                if ( referenceVal || xVal || yVal || scaleVal || priceVal || prodTimeVal ) {
+                    // At least one value specifed - validate them all
+                    if ( validateStringPresentVal(referenceVal) != "" ) 
+                        allValid = false;
+                    if ( validateNumberVal(xVal) != "" )
+                        allValid = false;
+                    if ( validateNumberVal(yVal) != "" )
+                        allValid = false;
+                    if ( validateNumberVal(scaleVal) != "" )
+                        allValid = false;
+                    if ( validateNumberVal(priceVal) != "" )
+                        allValid = false;
+                    if ( validateNumberVal(prodTimeVal) != "" )
+                        allValid = false;
+                    
+                    if (!allValid) {
+//                      alert("allValid = false. ref: " + referenceVal + " bridge " + bridgeVal + " heel " + heelVal + " file " + fileVal + " ctr = " + ctr);
+                      // We've found something that's invalid so stop testing to save time
+                      break;
+                    }
+                } else {
+                      // No values specified so just ignore
+                }
+              }
+              
+              return allValid;
+          }
+          
+          function validateAllRightTempleNewTextureVals() {
+              
+              
+              var allValid = true;
+            
+              // Go and get the number of rows element so we know what fields we need to consider
+              var numOfRows = parseInt($('#numOfRightTempleTextureRows').val());
+
+              // For each of the rows validate each of the entries in turn 
+              for ( var ctr = 0; ctr <= numOfRows; ctr++ ) {
+
+                var referenceVal = $('#rightTempleTextureReference-'+ctr).val();
+                var xVal = $('#rightTempleTextureX-'+ctr).val();
+                var yVal = $('#rightTempleTextureY-'+ctr).val();
+                var scaleVal = $('#rightTempleTextureScaleFactor-'+ctr).val();
+                var priceVal = $('#rightTempleTexturePrice-'+ctr).val();
+                var prodTimeVal = $('#rightTempleTextureProductionTime-'+ctr).val();
+                
+                if ( referenceVal || xVal || yVal || scaleVal || priceVal || prodTimeVal ) {
+                    // At least one value specifed - validate them all
+                    if ( validateStringPresentVal(referenceVal) != "" ) 
+                        allValid = false;
+                    if ( validateNumberVal(xVal) != "" )
+                        allValid = false;
+                    if ( validateNumberVal(yVal) != "" )
+                        allValid = false;
+                    if ( validateNumberVal(scaleVal) != "" )
+                        allValid = false;
+                    if ( validateNumberVal(priceVal) != "" )
+                        allValid = false;
+                    if ( validateNumberVal(prodTimeVal) != "" )
+                        allValid = false;
+                    
+                    if (!allValid) {
+//                      alert("allValid = false. ref: " + referenceVal + " bridge " + bridgeVal + " heel " + heelVal + " file " + fileVal + " ctr = " + ctr);
+                      // We've found something that's invalid so stop testing to save time
+                      break;
+                    }
+                } else {
+                      // No values specified so just ignore
+                }
+              }
+              
+              return allValid;
+          }
+
+
+          function validateAllFrontalNewTextureVals() {
+              
+              
+              var allValid = true;
+            
+              // Go and get the number of rows element so we know what fields we need to consider
+              var numOfRows = parseInt($('#numOfFrontalTextureRows').val());
+
+              // For each of the rows validate each of the entries in turn 
+              for ( var ctr = 0; ctr <= numOfRows; ctr++ ) {
+
+                var referenceVal = $('#frontalTextureReference-'+ctr).val();
+                var xVal = $('#frontalTextureX-'+ctr).val();
+                var yVal = $('#frontalTextureY-'+ctr).val();
+                var scaleVal = $('#frontalTextureScaleFactor-'+ctr).val();
+                var priceVal = $('#frontalTexturePrice-'+ctr).val();
+                var prodTimeVal = $('#frontalTextureProductionTime-'+ctr).val();
+                
+                if ( referenceVal || xVal || yVal || scaleVal || priceVal || prodTimeVal ) {
+                    // At least one value specifed - validate them all
+                    if ( validateStringPresentVal(referenceVal) != "" ) 
+                        allValid = false;
+                    if ( validateNumberVal(xVal) != "" )
+                        allValid = false;
+                    if ( validateNumberVal(yVal) != "" )
+                        allValid = false;
+                    if ( validateNumberVal(scaleVal) != "" )
+                        allValid = false;
+                    if ( validateNumberVal(priceVal) != "" )
+                        allValid = false;
+                    if ( validateNumberVal(prodTimeVal) != "" )
+                        allValid = false;
+                    
+                    if (!allValid) {
+//                      alert("allValid = false. ref: " + referenceVal + " bridge " + bridgeVal + " heel " + heelVal + " file " + fileVal + " ctr = " + ctr);
+                      // We've found something that's invalid so stop testing to save time
+                      break;
+                    }
+                } else {
+                      // No values specified so just ignore
+                }
+              }
+              
+              return allValid;
+          }
+
+          function validateAllFrontalDimensionVals() {
+              var allValid = true;
+              
+              if ( validateNumberVal($('#popupBoxingHorizontalStandard').val()) != "" )
+                allValid = false;
+              if ( validateNumberVal($('#popupBoxingHorizontalMin').val()) != "" )
+                allValid = false;
+              if ( validateNumberVal($('#popupBoxingHorizontalMax').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupBoxingVerticalStandard').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupBoxingVerticalMin').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupBoxingVerticalMax').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupPantoscopicAngleLeftStandard').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupPantoscopicAngleLeftMin').val()) != "" ) 
+                  allValid = false;
+              if ( validateNumberVal($('#popupPantoscopicAngleLeftMax').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupPantoscopicAngleRightStandard').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupPantoscopicAngleRightMin').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupPantoscopicAngleRightMax').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupBridgeWidthStandard').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupBridgeWidthMin').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupBridgeWidthMax').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupBridgeHeightStandard').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupBridgeHeightMin').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupBridgeHeightMax').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupHeelWidthStandard').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupHeelWidthMin').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupHeelWidthMax').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupInternalRimReductionStandard').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupInternalRimReductionMin').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupInternalRimReductionMax').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupBaseOfFrameStandard').val()) != "" ) 
+                  allValid = false;
+              if ( validateNumberVal($('#popupBaseOfFrameMin').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupBaseOfFrameMax').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupWrapAngleStandard').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupWrapAngleMin').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupWrapAngleMax').val()) != "" )
+                  allValid = false;
+              if ( validateNumberVal($('#popupTotalLengthStandard').val()) != "" )
+                  allValid = false;
+
+
+            return allValid;
+          }
+          
+          
+          function validateAllTotalSizeVals() {
+              
+              var allValid = true;
+              
+              
+              for(var ctr = 1; ctr <= 15; ctr++ ) {
+                  if ( validateNumberVal($('#popupTotalSizeBridgeWidth'+ctr).val()) != "" )
+                      allValid = false;
+                  
+                  if ( validateNumberVal($('#popupTotalSizeMin'+ctr).val()) != "" )
+                      allValid = false;
+                  
+                  if ( validateNumberVal($('#popupTotalSizeMax'+ctr).val()) != "" )
+                      allValid = false;
+                  
+                  if ( !allValid )
+                      break;
+              }
+                
+                
+              return allValid;
+
+          }

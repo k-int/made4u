@@ -30,6 +30,9 @@
       localisedMessages["frame_database_precooked_config_popup_title"] = "${message(code: 'frame.database.precooked.config.popup.title', default: 'Precooked configuration')}";
       localisedMessages["frame_database_config_popup_no_choice_made_message"] = "${message(code: 'frame.database.config.popup.no.choice.made.message', default: 'Please choose a value to add and try again')}";
 
+      var formattedFloatZero = "${formatNumber(number: 0, format: "0.0")}";
+      var formattedPriceZero = "${formatNumber(number: 0.0, format: "0.00")}";
+      
     </script>
     
     <g:javascript library="frameEditing"/>
